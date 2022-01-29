@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/VaibhavMittal20/MEDIUM_SCRAPPER/issues"
   },
-  "homepage": "https://github.com/VaibhavMittal20/MEDIUM_SCRAPPER#readme"
+  "homepage": "https://github.com/VaibhavMittal20/MEDIUM_SCRAPPER#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "request": "^2.88.2"
+  }
 }
