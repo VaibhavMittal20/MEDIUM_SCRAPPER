@@ -11,6 +11,7 @@
       .center
       {
         width:40rem;
+        margin: auto;
         width: 50%;
       }
 
@@ -21,17 +22,51 @@
 
       .form-inline
       {
-        margin: auto 25%;
+        margin: auto 20%;
       }
 
       .but-mar
       {
-        margin: 0px 38%;
+        margin: auto 38%;
       }
 
       .but12-mar
       {
-        margin-top: -20%;
+        margin-top: -17%;
+      }
+
+      .bttn
+      {
+        float: right;
+      }
+
+      .details
+      {
+        display:inline-flex
+      }
+
+      .idetails
+      {
+        margin-right: 10px;
+        color: black;
+      }
+
+      #tags
+      {
+        display:flex;
+        justify-content: center;
+        align-items: center; 
+      }
+
+      .newbtn
+      {
+        margin: 2px;
+      }
+
+      .head
+      {
+        margin-right: 15px;
+        margin-top: 5px;
       }
     </style>
 </head>
@@ -46,13 +81,11 @@
         <form class="form-inline">
           <input class="form-control" type="search" placeholder="Search Topic" aria-label="Search" id="Search-bar">&nbsp;&nbsp;
           <div class="but-mar">
-              <button class="btn btn btn-success but12-mar" type="button" onclick="postreq(document.getElementById('search-bar').value)">Search</button>&nbsp;&nbsp;&nbsp;
+              <button class="btn btn btn-success but12-mar" type="button" onclick="postreq(document.getElementById('Search-bar').value)">Search</button>&nbsp;&nbsp;&nbsp;
               <button class="btn btn-info but12-mar" type="button" onclick="location.href='/history'">History</button>
           </div>
         </form>
       </div>
     </nav>  
-
-
 </body>
 </html>

@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 
    let links=[];
    let title=[];
-   let author=[];
+   let creator=[];
    let tags=[];
    let upload=[];
    let time=[];
@@ -11,7 +11,7 @@ const cheerio = require('cheerio');
 
    links.length=0;
    title.length=0;
-   author.length=0;
+   creator.length=0;
    tags.length=0;
    upload.length=0;
    time.length=0;
@@ -45,7 +45,9 @@ const cheerio = require('cheerio');
                 var el = Ael.eq(i);
             
                 if(i<10)
+                {
                  title.push($(el).text());
+                }
             }
 
             var Ael = $('h4');
@@ -54,7 +56,9 @@ const cheerio = require('cheerio');
                 var el = Ael.eq(i);
             
                 if($(el).attr().class!=undefined && $(el).attr().class.length==38)
-                   author.push($(el).text());
+                {
+                   creator.push($(el).text());
+                }
             }
 
             var Ael = $('a');
@@ -63,7 +67,9 @@ const cheerio = require('cheerio');
                 var el = Ael.eq(i);
             
                 if($(el).attr().class!=undefined && $(el).attr().class.length==2 && $(el).children().length==1 && tags.includes($(el).text())==false)
+                {
                   tags.push($(el).text());
+                }
             }
 
             var Ael = $('p');
@@ -72,7 +78,9 @@ const cheerio = require('cheerio');
                 var el = Ael.eq(i);
 
                 if($(el).attr().class.length==34)
-                   upload.push($(el).text());      
+                {
+                   upload.push($(el).text());  
+                }    
             }
 
             var Ael = $('span');
@@ -80,11 +88,10 @@ const cheerio = require('cheerio');
             {
                 var el = Ael.eq(i);
 
-                // if($(el).attr().class!=undefined && $(el).attr().class.length==13 && $(el).text().length>1)
-                //     time.push($(el).text()); 
-                
-                if($(el).text().length==10)
-                 time.push($(el).text());
+                if($(el).attr().class!=undefined && $(el).attr().class.length==13 && $(el).text().length>1)
+                {
+                    time.push($(el).text()); 
+                }
             }
 
             var Ael = $('h3');
@@ -93,13 +100,14 @@ const cheerio = require('cheerio');
                 var el = Ael.eq(i);
                 
                 if(i>=1 && i<=10)
+                {
                   blog.push($(el).text());
+                }
             }
-
 
             console.log(links);
             console.log(title);
-            console.log(author);
+            console.log(creator);
             console.log(tags);
             console.log(upload);
             console.log(time);
