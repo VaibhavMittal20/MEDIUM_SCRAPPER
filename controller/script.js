@@ -5,6 +5,17 @@ const cheerio = require('cheerio');
    let title=[];
    let author=[];
    let tags=[];
+   let upload=[];
+   let time=[];
+   let blog=[];
+
+   links.length=0;
+   title.length=0;
+   author.length=0;
+   tags.length=0;
+   upload.length=0;
+   time.length=0;
+   blog.length=0;
   
     const webid=`https://medium.com/tag/developer/latest`;
     request(webid,function(err,response,html){
@@ -52,12 +63,46 @@ const cheerio = require('cheerio');
                 var el = Ael.eq(i);
             
                 if($(el).attr().class!=undefined && $(el).attr().class.length==2 && $(el).children().length==1 && tags.includes($(el).text())==false)
-                  {tags.push($(el).text());}
+                  tags.push($(el).text());
             }
+
+            var Ael = $('p');
+            for(var i=0; i<Ael.length; i++)
+            {
+                var el = Ael.eq(i);
+
+                if($(el).attr().class.length==34)
+                   upload.push($(el).text());      
+            }
+
+            var Ael = $('span');
+            for(var i=0; i<Ael.length; i++)
+            {
+                var el = Ael.eq(i);
+
+                // if($(el).attr().class!=undefined && $(el).attr().class.length==13 && $(el).text().length>1)
+                //     time.push($(el).text()); 
+                
+                if($(el).text().length==10)
+                 time.push($(el).text());
+            }
+
+            var Ael = $('h3');
+            for(var i=0; i<Ael.length; i++)
+            {
+                var el = Ael.eq(i);
+                
+                if(i>=1 && i<=10)
+                  blog.push($(el).text());
+            }
+
 
             console.log(links);
             console.log(title);
             console.log(author);
             console.log(tags);
+            console.log(upload);
+            console.log(time);
+            console.log(blog);
         }
     });
