@@ -9,6 +9,11 @@ const cheerio = require('cheerio');
    let time=[];
    let blog=[];
 
+function search(tag)
+{ 
+    if(tag.length===0)
+      return;
+
    links.length=0;
    title.length=0;
    creator.length=0;
@@ -17,7 +22,7 @@ const cheerio = require('cheerio');
    time.length=0;
    blog.length=0;
   
-    const webid=`https://medium.com/tag/developer/latest`;
+    const webid=`https://medium.com/tag/${tag}/latest`;
     request(webid,function(err,response,html){
         if(err)
         {
@@ -39,17 +44,6 @@ const cheerio = require('cheerio');
                 }
             }
 
-            var Ael = $('h2');
-            for(var i=0; i<Ael.length; i++)
-            {
-                var el = Ael.eq(i);
-            
-                if(i<10)
-                {
-                 title.push($(el).text());
-                }
-            }
-
             var Ael = $('h4');
             for(var i=0; i<Ael.length; i++)
             {
@@ -58,17 +52,6 @@ const cheerio = require('cheerio');
                 if($(el).attr().class!=undefined && $(el).attr().class.length==38)
                 {
                    creator.push($(el).text());
-                }
-            }
-
-            var Ael = $('a');
-            for(var i=0; i<Ael.length; i++)
-            {
-                var el = Ael.eq(i);
-            
-                if($(el).attr().class!=undefined && $(el).attr().class.length==2 && $(el).children().length==1 && tags.includes($(el).text())==false)
-                {
-                  tags.push($(el).text());
                 }
             }
 
@@ -81,6 +64,28 @@ const cheerio = require('cheerio');
                 {
                    upload.push($(el).text());  
                 }    
+            }
+
+            var Ael = $('h2');
+            for(var i=0; i<Ael.length; i++)
+            {
+                var el = Ael.eq(i);
+            
+                if(i<10)
+                {
+                 title.push($(el).text());
+                }
+            }
+             
+            var Ael = $('a');
+            for(var i=0; i<Ael.length; i++)
+            {
+                var el = Ael.eq(i);
+            
+                if($(el).attr().class!=undefined && $(el).attr().class.length==2 && $(el).children().length==1 && tags.includes($(el).text())==false)
+                {
+                  tags.push($(el).text());
+                }
             }
 
             var Ael = $('span');
@@ -105,12 +110,25 @@ const cheerio = require('cheerio');
                 }
             }
 
-            console.log(links);
-            console.log(title);
-            console.log(creator);
-            console.log(tags);
-            console.log(upload);
-            console.log(time);
-            console.log(blog);
+            // console.log(title);
+            // console.log(creator);
         }
     });
+}
+
+function getjson()
+{   
+    let obj={
+        "links":links,
+        "title":title,
+        "creator":creator,
+        "tags":tags,
+        "upload":upload,
+        "time":time,
+       "blog":blog
+    };
+    console.log(obj);
+    return obj;
+}
+
+module.exports = {search,getjson};
