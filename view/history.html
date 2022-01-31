@@ -42,19 +42,63 @@
     </nav>
     <br/>
     <div id="component">
-        <nav class="center navbar navbar-light bg-secondary bg-gradient bg-opacity-50">
+        <nav class="center navbar navbar-light bg-secondary bg-gradient bg-opacity-25">
             <div class="navbar-brand1">Loading..</div>
             <div class="right navbar-brand">Loading..</div>
         </nav>
-        <nav class="center navbar navbar-light bg-secondary bg-gradient bg-opacity-50">
+        <nav class="center navbar navbar-light bg-secondary bg-gradient bg-opacity-25">
             <div class="navbar-brand1" >Loading..</div>
             <div class="right navbar-brand">Loading..</div>
         </nav>
-        <nav class="center navbar navbar-light bg-secondary bg-gradient bg-opacity-50">
+        <nav class="center navbar navbar-light bg-secondary bg-gradient bg-opacity-25">
             <div class="navbar-brand1" >Loading..</div>
             <div class="right navbar-brand">Loading..</div>
         </nav>
     </div>
+
+    <script>   
+        setTimeout(function(){
+            document.getElementById("component").innerHTML="";
+            let arr={};
+
+            $.ajax({
+            type:'get',
+            url:'/gethistory',
+            async:false,
+            success:function(data){
+                arr=data;
+                console.log(data);
+              }
+            });
+
+            var global=document.getElementById("component");
+            for(let i=0;i<arr.tag.length;i++)
+            {
+              var a1 = document.createElement("div");
+              a1.classList.add("center");
+              a1.classList.add("navbar");
+              a1.classList.add("navbar-light");
+              a1.classList.add("bg-secondary");
+              a1.classList.add("bg-gradient");
+              a1.classList.add("bg-opacity-25");
+
+
+                var b1 = document.createElement("div");
+                b1.classList.add("navbar-brand1");
+                b1.innerText=arr.tag[i];
+
+                var b2 = document.createElement("div");
+                b2.classList.add("right");
+                b2.classList.add("navbar-brand");
+                b2.innerText=arr.date[i];
+                
+              a1.appendChild(b1);
+              a1.appendChild(b2);
+
+              global.appendChild(a1);
+            }
+        },500);
+    </script>
 </body>
 </html>
 
