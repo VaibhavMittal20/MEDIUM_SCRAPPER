@@ -9,16 +9,39 @@ var conn = mysql.createConnection({
 });
 
 conn.connect((err)=>{
-    if(!!err){
-        console.log('Error');
+    if(!err){
+        console.log('Connected');
     }
     else{
-        console.log('Connected');
+        console.log('Error');
     }
 });
 
 let tag=[];
 let date=[];
+
+function insertquery(tag)
+{
+    let tdate= new Date;
+    let s=`insert into info (tag,date) values (${JSON.stringify(tag)},${JSON.stringify(tdate).slice(0,11)+"\""})`;
+    conn.query(s ,(err)=>{
+        if(!err){
+            console.log('Successfully Inserted');
+        }
+        else {
+            console.log('Error in the Query');
+        }
+    });
+}
+
+function displayquery()
+{
+    let obj={
+        "tag":tag,
+        "date":date
+    }
+    return obj;
+}
 
 function processquery()
 {
@@ -26,33 +49,32 @@ function processquery()
     date.length=0;
 
     conn.query("select tag from info order by id desc",(err,data)=>{
-        if(!!err){
-            console.log('Error in the Query');
-        }
-        else {
+        if(!err){
             console.log('Successful Query');
             
             for(let i=0;i<data.length;i++)
             {
                 tag.push(data[i].tag);
             }
-         
+        }
+        else {
+            console.log('Error in the Query');
         }
     });
 
     conn.query("select date from info order by id desc",(err,data)=>{
-        if(!!err){
-            console.log('Error in the Query');
-        }
-        else {
+        if(!err){
             console.log('Successful Query');
             
             for(let i=0;i<data.length;i++)
             {
                 date.push(data[i].date);
             }
-           
+        }
+        else {
+            console.log('Error in the Query');
         }
     });
 }
 
+module.exports = {insertquery,displayquery,processquery};
