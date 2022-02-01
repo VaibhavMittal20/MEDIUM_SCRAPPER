@@ -117,7 +117,6 @@
 
               var c1=document.createElement("p");
               c1.classList.add("card-text");
-              c1.innerText="Pending...";
 
               var c2=document.createElement("h5");
               c2.classList.add("card-title");
@@ -125,7 +124,6 @@
 
               var c3=document.createElement("p");
               c3.classList.add("card-text");
-              c3.innerText="Pending...";
 
               var c4=document.createElement("div");
               c4.classList.add("details");
@@ -136,11 +134,9 @@
 
                 var d1=document.createElement("div");
                 d1.classList.add("idetails");
-                d1.innerText="Pending...";
 
                 var d2=document.createElement("div");
                 d2.classList.add("idetails");
-                d2.innerText="Pending...";
 
                 c4.appendChild(d1);
                 c4.appendChild(d2);
@@ -240,11 +236,7 @@
          for(let j=0;j<obj.title.length;j++)
           {
             let a=document.getElementsByClassName('card-body');
-            a[j].getElementsByClassName('card-text')[0].innerText="Loading..";
             a[j].getElementsByClassName('card-title')[0].innerText="Loading..";
-            a[j].getElementsByClassName('card-text')[1].innerText="Loading..";
-            a[j].getElementsByClassName('idetails')[0].innerText="Loading..";
-            a[j].getElementsByClassName('idetails')[1].innerText="Loading..";
    
             await new Promise((resolve) =>
                 setTimeout(function(){
