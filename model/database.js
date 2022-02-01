@@ -8,7 +8,7 @@ var conn = mysql.createConnection({
     port: 3306
 });
 
-conn.connect((err)=>{
+conn.connect(err=>{
     if(!err){
         console.log('Connected');
     }
@@ -20,7 +20,7 @@ conn.connect((err)=>{
 let tag=[];
 let date=[];
 
-function insertquery(tag)
+function iquery(tag)
 {
     let tdate= new Date;
     let s=`insert into info (tag,date) values (${JSON.stringify(tag)},${JSON.stringify(tdate).slice(0,11)+"\""})`;
@@ -34,7 +34,7 @@ function insertquery(tag)
     });
 }
 
-function displayquery()
+function dquery()
 {
     let obj={
         "tag":tag,
@@ -43,7 +43,7 @@ function displayquery()
     return obj;
 }
 
-function processquery()
+function pquery()
 {
     tag.length=0;
     date.length=0;
@@ -77,4 +77,4 @@ function processquery()
     });
 }
 
-module.exports = {insertquery,displayquery,processquery};
+module.exports = {iquery,dquery,pquery};

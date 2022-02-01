@@ -13,7 +13,7 @@
         width:40rem;
         margin: auto;
         width: 60%;
-        border: 0.2px rgba(0, 0, 0,0.9) solid;
+        border: 0.1px rgba(0, 0, 0,0.9) solid;
       }
 
       .navbar-brand
@@ -84,15 +84,15 @@
 
 
                 var b1 = document.createElement("div");
-                b1.classList.add("navbar-brand1");
                 b1.innerText=arr.tag[i];
+                b1.classList.add("navbar-brand1");
 
                 var b2 = document.createElement("div");
                 b2.classList.add("right");
                 b2.classList.add("navbar-brand");
                 b2.innerText=arr.date[i];
                 
-              a1.appendChild(b1);
+                a1.appendChild(b1);
               a1.appendChild(b2);
 
               global.appendChild(a1);
